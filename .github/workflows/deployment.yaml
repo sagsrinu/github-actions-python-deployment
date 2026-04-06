@@ -23,7 +23,7 @@ jobs:
     - name: Deploy to EC2
       run: |
         ssh -i ~/.ssh/id_rsa ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
-          cd /home/ubuntu/app || git clone https://github.com/your-username/your-repo.git /home/ubuntu/app
+          cd /home/ubuntu/app || git clone https://github.com/sagsrinu/python-app.git /home/ubuntu/app
           cd /home/ubuntu/app
           git pull origin main
           pip3 install -r requirements.txt
