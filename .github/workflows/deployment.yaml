@@ -29,7 +29,6 @@ jobs:
           cd /home/ec2-user/app/python-app
           git pull origin main
           sudo yum install python3-pip -y
-          pip freeze > requirements.txt
           pip3 install -r requirements.txt
           pkill -f app.py || true
           nohup python3 app.py > output.log 2>&1 &
