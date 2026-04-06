@@ -22,11 +22,14 @@ jobs:
     - name: Deploy to EC2
       run: |
         ssh -i ~/.ssh/id_rsa ec2-user@${{ secrets.EC2_HOST }} << 'EOF'
-          cd /home/ec2-user/app 
+          mkdir -p /home/ec2-user/app 
+          cd /home/ec2-user/app
+          sudo yum install git -y
           git clone https://github.com/sagsrinu/python-app.git 
           cd /home/ec2-user/app/python-app
           git pull origin main
-          #pip3 install -r requirements.txt
+          sudo yum install python3-pip -y
+          pip3 install -r requirements.txt
           pkill -f app.py || true
           nohup python3 app.py > output.log 2>&1 &
         EOF
